@@ -6,6 +6,7 @@ namespace Amocrmapi\V2;
 
 use Amocrmapi\Dependencies\EntityApiInterface;
 use Amocrmapi\Dependencies\EntityInterface;
+use Amocrmapi\Exceptions\AuthException;
 use Amocrmapi\V2\Helpers\Client;
 use Amocrmapi\Entity\Lead;
 
