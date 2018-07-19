@@ -1,0 +1,22 @@
+{
+    "name": "karasunokami/amocrmapi",
+    "require": {
+        "php": "^7.0",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Podsvirov Semyon",
+            "email": "karasunokami@yahoo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Amocrmapi\\": "src"
+        }
+    }
+}
