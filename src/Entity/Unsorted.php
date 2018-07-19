@@ -144,7 +144,7 @@ class Unsorted implements EntityInterface
      */
     public function setSourceName(string $sourceName)
     {
-        $this->entity["sourceName"] = $sourceName;
+        $this->entity["source_name"] = $sourceName;
     
         return $this;
     }
@@ -156,7 +156,7 @@ class Unsorted implements EntityInterface
      */
     public function setSourceUid(string $sourceUid)
     {
-        $this->entity["sourceUid"] = $sourceUid;
+        $this->entity["source_uid"] = $sourceUid;
     
         return $this;
     }
@@ -168,7 +168,7 @@ class Unsorted implements EntityInterface
      */
     public function setPipelineId(string $pipelineId)
     {
-        $this->entity["pipelineId"] = $pipelineId;
+        $this->entity["pipeline_id"] = $pipelineId;
     
         return $this;
     }
@@ -180,7 +180,7 @@ class Unsorted implements EntityInterface
      */
     public function setFormId(int $formId)
     {
-        $this->entity["formId"] = $formId;
+        $this->entity["form_id"] = $formId;
     
         return $this;
     }
@@ -192,7 +192,7 @@ class Unsorted implements EntityInterface
      */
     public function setFormPage(string $formPage)
     {
-        $this->entity["formPage"] = $formPage;
+        $this->entity["form_page"] = $formPage;
     
         return $this;
     }
@@ -216,7 +216,7 @@ class Unsorted implements EntityInterface
      */
     public function setServiceCode(string $serviceCode)
     {
-        $this->entity["serviceCode"] = $serviceCode;
+        $this->entity["service_code"] = $serviceCode;
     
         return $this;
     }
@@ -228,7 +228,7 @@ class Unsorted implements EntityInterface
      */
     public function setFormName(string $formName)
     {
-        $this->entity["formName"] = $formName;
+        $this->entity["form_name"] = $formName;
     
         return $this;
     }
@@ -240,7 +240,7 @@ class Unsorted implements EntityInterface
      */
     public function setFormSendAt(int $formSendAt)
     {
-        $this->entity["formSendAt"] = $formSendAt;
+        $this->entity["form_send_at"] = $formSendAt;
     
         return $this;
     }
@@ -288,7 +288,7 @@ class Unsorted implements EntityInterface
      */
     public function setDateCall(int $dateCall)
     {
-        $this->entity["dateCall"] = $dateCall;
+        $this->entity["date_call"] = $dateCall;
 
         return $this;
     }
@@ -336,7 +336,7 @@ class Unsorted implements EntityInterface
      */
     public function setAddNote(string $addNote)
     {
-        $this->entity["addNote"] = $addNote;
+        $this->entity["add_note"] = $addNote;
 
         return $this;
     }
