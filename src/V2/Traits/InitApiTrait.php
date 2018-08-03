@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\V2\Traits;
@@ -14,7 +13,12 @@ trait InitApiTrait
 	 */
 	private $api;
 
-	public function init($api)
+    /**
+     * @param $api
+     *
+     * @return $this
+     */
+    public function init($api)
 	{
 		$this->api = $api;
 

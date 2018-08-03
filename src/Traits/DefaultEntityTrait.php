@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\Traits;
@@ -7,6 +6,11 @@ namespace Amocrmapi\Traits;
 use Amocrmapi\Entity\Note;
 use Amocrmapi\Entity\Task;
 
+/**
+ * Trait DefaultEntityTrait
+ *
+ * @package Amocrmapi\Traits
+ */
 trait DefaultEntityTrait
 {
 	/**
@@ -32,11 +36,13 @@ trait DefaultEntityTrait
 
     /**
      * Set entity custom field
-     * 
+     *
      * @param int $id
      * @param int | string $value
      * @param string $enum = null
      * @param string $subtype = null
+     *
+     * @return DefaultEntityTrait
      */
     public function setCustomField(int $id, $value, string $enum = null, string $subtype = null)
     {
@@ -69,8 +75,10 @@ trait DefaultEntityTrait
 
     /**
      * Add tag to entity
-     * 
+     *
      * @param string $tag
+     *
+     * @return DefaultEntityTrait
      */
     public function addTag(string $tag)
     {
@@ -81,8 +89,10 @@ trait DefaultEntityTrait
 
     /**
      * Remove tag from entity tags
-     * 
+     *
      * @param string $tag
+     *
+     * @return DefaultEntityTrait
      */
     public function removeTag($tag)
     {
@@ -100,9 +110,11 @@ trait DefaultEntityTrait
     /**
      * Add note to entity if need to save it on configuring entity
      * Have to flush notes with NoteApi after add or update current entity
-     * 
+     *
      * @param string $text
      * @param mixed $noteType
+     *
+     * @return DefaultEntityTrait
      */
     public function addNote(string $text, $noteType = 4)
     {
@@ -137,6 +149,8 @@ trait DefaultEntityTrait
      * @param string $text
      * @param int $responsibleUserId,
      * @param int $taskType = 1
+     *
+     * @return DefaultEntityTrait
      */
     public function addTask(string $text, int $responsibleUserId, int $taskType = 1)
     {
@@ -179,6 +193,8 @@ trait DefaultEntityTrait
      * Set entity id
      * 
      * @param int $id
+     *
+     * @return DefaultEntityTrait
      */
     public function setId(int $id)
     {
@@ -201,6 +217,8 @@ trait DefaultEntityTrait
      * Set entity name
      * 
      * @param string $name
+     *
+     * @return DefaultEntityTrait
      */
     public function setName(string $name)
     {
@@ -223,6 +241,8 @@ trait DefaultEntityTrait
      * Set entity responsible_user_id
      * 
      * @param int $responsibleUserId
+     *
+     * @return DefaultEntityTrait
      */
     public function setResponsibleUserId(int $responsibleUserId)
     {
@@ -245,6 +265,8 @@ trait DefaultEntityTrait
      * Set entity created_by
      * 
      * @param int $createdBy
+     *
+     * @return DefaultEntityTrait
      */
     public function setCreatedBy(int $createdBy)
     {
@@ -267,6 +289,8 @@ trait DefaultEntityTrait
      * Set entity created_at
      * 
      * @param int $createdAt
+     *
+     * @return DefaultEntityTrait
      */
     public function setCreatedAt(int $createdAt)
     {
@@ -289,6 +313,8 @@ trait DefaultEntityTrait
      * Set entity updated_at
      * 
      * @param int $updatedAt
+     *
+     * @return DefaultEntityTrait
      */
     public function setUpdatedAt(int $updatedAt)
     {
@@ -313,6 +339,8 @@ trait DefaultEntityTrait
      * ["name" => sting, "id" => int]
      * 
      * @param array $tags
+     *
+     * @return DefaultEntityTrait
      */
     public function setTags(array $tags)
     {
@@ -369,6 +397,8 @@ trait DefaultEntityTrait
      * ]
      * 
      * @param array $customFields
+     *
+     * @return DefaultEntityTrait
      */
     public function setCustomFields(array $customFields)
     {
@@ -380,7 +410,7 @@ trait DefaultEntityTrait
     /**
      * Return entity closest_task_at
      * 
-     * @return int|null
+     * @return mixed
      */
     public function getClosestTaskAt()
     {

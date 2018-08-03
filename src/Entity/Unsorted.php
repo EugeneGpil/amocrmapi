@@ -1,21 +1,48 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\Entity;
 
-use Amocrmapi\Traits\EntityTrait;
 use Amocrmapi\Dependencies\EntityInterface;
 
+/**
+ * Class Unsorted
+ *
+ * @package Amocrmapi\Entity
+ */
 class Unsorted implements EntityInterface
 {
-	const DEFAULT_SOURCE_NAME = "amoapi source name";
+    /**
+     * Default source name attribute for unsorted api
+     */
+    const DEFAULT_SOURCE_NAME = "amoapi source name";
+    /**
+     * Default from name attribute for unsorted api
+     */
     const DEFAULT_FORM_NAME = "amoapi form name";
+    /**
+     * Default from page attribute for unsorted api
+     */
     const DEFAULT_FORM_PAGE = "amoapi form page";
+    /**
+     * Default ip attribute for unsorted api
+     */
     const DEFAULT_IP = "0.0.0.0";
+    /**
+     * Default referer attribute for unsorted api
+     */
     const DEFAULT_REFERER = "amoapi referer";
+    /**
+     * Default from attribute for unsorted api
+     */
     const DEFAULT_FROM = "amoapi from";
+    /**
+     * Default duration attribute for unsorted api
+     */
     const DEFAULT_DURATION = '0';
+    /**
+     * Default link attribute for unsorted api
+     */
     const DEFAULT_LINK = "amoapi link";
 
     /**
@@ -23,6 +50,9 @@ class Unsorted implements EntityInterface
      */
     private $entity;
 
+    /**
+     * Unsorted constructor.
+     */
     public function __construct()
 	{
 		$this->entity = [
@@ -62,9 +92,9 @@ class Unsorted implements EntityInterface
      * 
      * @param array @data
      * 
-     * @return \Amocrmapi\Entity\Unsorted
+     * @return Unsorted
      */
-    public function parse(array $data) : \Amocrmapi\Entity\Unsorted
+    public function parse(array $data)
     {
         foreach ($data as $ind => $val) {
             $this->entity[$ind] = $val;
@@ -89,6 +119,8 @@ class Unsorted implements EntityInterface
      * @param string $text
      * @param string $entityType
      * @param int $noteType = 4 - common note
+     *
+     * @return Unsorted
      */
     public function addNote(string $text, string $entityType = "lead", int $noteType = 4)
     {
@@ -104,9 +136,11 @@ class Unsorted implements EntityInterface
    /**
     * Set unsorted lead
     * 
-    * @param \AmocrmApi\Entity\Lead $lead
+    * @param Lead $lead
+    *
+    * @return Unsorted
     */
-    public function setLead(\AmocrmApi\Entity\Lead $lead)
+    public function setLead(Lead $lead)
     {
         $this->entity["incoming_entities"]["leads"][0] = $lead->prepare();
 
@@ -116,9 +150,11 @@ class Unsorted implements EntityInterface
     /**
      * Set unsorted 
      * 
-     * @param \AmocrmApi\Entity\Contact $contact
+     * @param Contact $contact
+     *
+     * @return Unsorted
      */
-    public function setContact(\AmocrmApi\Entity\Contact $contact)
+    public function setContact(Contact $contact)
     {
         $this->entity["incoming_entities"]["contacts"][0] = $contact->prepare();
 
@@ -128,9 +164,11 @@ class Unsorted implements EntityInterface
     /**
      * Set unsorted 
      * 
-     * @param \AmocrmApi\Entity\Company $company
+     * @param Company $company
+     *
+     * @return Unsorted
      */
-    public function setCompany(\AmocrmApi\Entity\Company $company)
+    public function setCompany(Company $company)
     {
         $this->entity["incoming_entities"]["companies"][0] = $company->prepare();
 
@@ -141,6 +179,8 @@ class Unsorted implements EntityInterface
      * Set unsorted sourceName
      * 
      * @param string $sourceName
+     *
+     * @return Unsorted
      */
     public function setSourceName(string $sourceName)
     {
@@ -153,6 +193,8 @@ class Unsorted implements EntityInterface
      * Set unsorted sourceUid
      * 
      * @param string $sourceUid
+     *
+     * @return Unsorted
      */
     public function setSourceUid(string $sourceUid)
     {
@@ -165,6 +207,8 @@ class Unsorted implements EntityInterface
      * Set unsorted pipelineId
      * 
      * @param string $pipelineId
+     *
+     * @return Unsorted
      */
     public function setPipelineId(string $pipelineId)
     {
@@ -177,6 +221,8 @@ class Unsorted implements EntityInterface
      * Set unsorted 
      * 
      * @param int $formId
+     *
+     * @return Unsorted
      */
     public function setFormId(int $formId)
     {
@@ -189,6 +235,8 @@ class Unsorted implements EntityInterface
      * Set unsorted formPage
      * 
      * @param string $formPage
+     *
+     * @return Unsorted
      */
     public function setFormPage(string $formPage)
     {
@@ -201,6 +249,8 @@ class Unsorted implements EntityInterface
      * Set unsorted ip
      * 
      * @param string $ip
+     *
+     * @return Unsorted
      */
     public function setIp(string $ip)
     {
@@ -213,6 +263,8 @@ class Unsorted implements EntityInterface
      * Set unsorted serviceCode
      * 
      * @param string $serviceCode
+     *
+     * @return Unsorted
      */
     public function setServiceCode(string $serviceCode)
     {
@@ -225,6 +277,8 @@ class Unsorted implements EntityInterface
      * Set unsorted formName
      * 
      * @param string $formName
+     *
+     * @return Unsorted
      */
     public function setFormName(string $formName)
     {
@@ -237,6 +291,8 @@ class Unsorted implements EntityInterface
      * Set unsorted 
      * 
      * @param int $formSendAt
+     *
+     * @return Unsorted
      */
     public function setFormSendAt(int $formSendAt)
     {
@@ -249,6 +305,8 @@ class Unsorted implements EntityInterface
      * Set unsorted referer
      * 
      * @param string $referer
+     *
+     * @return Unsorted
      */
     public function setReferer(string $referer)
     {
@@ -261,6 +319,8 @@ class Unsorted implements EntityInterface
      * Set unsorted to
      * 
      * @param int $to
+     *
+     * @return Unsorted
      */
     public function setTo(int $to)
     {
@@ -273,6 +333,8 @@ class Unsorted implements EntityInterface
      * Set unsorted from
      * 
      * @param string $from
+     *
+     * @return Unsorted
      */
     public function setFrom(string $from)
     {
@@ -285,6 +347,8 @@ class Unsorted implements EntityInterface
      * Set unsorted dateCall
      * 
      * @param int $dateCall
+     *
+     * @return Unsorted
      */
     public function setDateCall(int $dateCall)
     {
@@ -297,6 +361,8 @@ class Unsorted implements EntityInterface
      * Set unsorted duration
      * 
      * @param string $duration
+     *
+     * @return Unsorted
      */
     public function setDuration(string $duration)
     {
@@ -309,6 +375,8 @@ class Unsorted implements EntityInterface
      * Set unsorted link
      * 
      * @param string $link
+     *
+     * @return Unsorted
      */
     public function setLink(string $link)
     {
@@ -321,6 +389,8 @@ class Unsorted implements EntityInterface
      * Set unsorted uniq
      * 
      * @param string $uniq
+     *
+     * @return Unsorted
      */
     public function setUniq(string $uniq)
     {
@@ -333,6 +403,8 @@ class Unsorted implements EntityInterface
      * Set unsorted addNote
      * 
      * @param string $addNote
+     *
+     * @return Unsorted
      */
     public function setAddNote(string $addNote)
     {

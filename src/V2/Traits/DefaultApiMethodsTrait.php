@@ -1,10 +1,8 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\V2\Traits;
 
-use Amocrmapi\V2\Helpers\Client;
 use Amocrmapi\Exceptions\RequestException;
 
 /**
@@ -17,12 +15,13 @@ trait DefaultApiMethodsTrait
      * 
      * @param array $entities
      * 
-     * @throws Amocrmapi\Exceptions\RequestException
+     * @throws RequestException
      * 
      * @return array
      */
     public function add(array $entities) : array
     {
+        $data = [];
     	foreach ($entities as $entity) {
             $data["add"][] = $entity->prepare();
         }
@@ -48,13 +47,14 @@ trait DefaultApiMethodsTrait
      * Update amocrm entities
      * 
      * @param array $entities
-     * 
-     * @throws Amocrmapi\Exceptions\RequestException
-     * 
+     *
+     * @throws RequestException
+     *
      * @return array
      */
     public function update(array $entities) : array
     {
+        $data = [];
         foreach ($entities as $entity) {
             $data["update"][] = $entity->prepare();
         }
@@ -75,12 +75,12 @@ trait DefaultApiMethodsTrait
 
     /**
      * Get entities from amocrm
-     * 
+     *
      * @param array $params
-     * 
-     * @throws Amocrmapi\Exceptions\RequestException
-     * 
-     * @return Amocrmapi\Traits\AmocrmEntity
+     *
+     * @throws RequestException
+     *
+     * @return array
      */
     public function get(array $params) : array
     {
@@ -115,7 +115,7 @@ trait DefaultApiMethodsTrait
     /**
      * Remove entities form amocrm
      * 
-     * @todo research and realize realization of remove method
+     * @todo research and realize remove method
      * 
      * @param array $params
      * 

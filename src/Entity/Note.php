@@ -1,11 +1,15 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\Entity;
 
 use Amocrmapi\Dependencies\EntityInterface;
 
+/**
+ * Class Note
+ *
+ * @package Amocrmapi\Entity
+ */
 class Note implements EntityInterface
 {
 	/**
@@ -13,6 +17,9 @@ class Note implements EntityInterface
 	 */
 	private $entity;
 
+    /**
+     * Note constructor.
+     */
     public function __construct()
     {
         $this->entity = [
@@ -47,9 +54,9 @@ class Note implements EntityInterface
      * 
      * @param array @data
      * 
-     * @return \Amocrmapi\Entity\Note
+     * @return Note
      */
-    public function parse(array $data) : \Amocrmapi\Entity\Note
+    public function parse(array $data)
     {
         foreach ($data as $ind => $val) {
             $this->entity[$ind] = $val;
@@ -58,11 +65,19 @@ class Note implements EntityInterface
     	return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->entity["id"];
     }
 
+    /**
+     * @param $id
+     *
+     * @return Note
+     */
     public function setId($id)
     {
         $this->entity["entity"]["id"] = $id;
@@ -70,11 +85,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getResponsibleUserId()
     {
         return $this->entity["responsible_user_id"];
     }
 
+    /**
+     * @param $responsibleUserId
+     *
+     * @return Note
+     */
     public function setResponsibleUserId($responsibleUserId)
     {
         $this->entity["responsible_user_id"] = $responsibleUserId;
@@ -82,11 +105,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getCreatedBy()
     {
         return $this->entity["created_by"];
     }
 
+    /**
+     * @param $createdBy
+     *
+     * @return Note
+     */
     public function setCreatedBy($createdBy)
     {
         $this->entity["created_by"] = $createdBy;
@@ -94,11 +125,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getCreatedAt()
     {
         return $this->entity["created_at"];
     }
 
+    /**
+     * @param $createdAt
+     *
+     * @return Note
+     */
     public function setCreatedAt($createdAt)
     {
         $this->entity["created_at"] = $createdAt;
@@ -106,11 +145,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUpdatedAt()
     {
         return $this->entity["updated_at"];
     }
 
+    /**
+     * @param $updatedAt
+     *
+     * @return Note
+     */
     public function setUpdatedAt($updatedAt)
     {
         $this->entity["updated_at"] = $updatedAt;
@@ -118,11 +165,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getAccountId()
     {
         return $this->entity["account_id"];
     }
 
+    /**
+     * @param $accountId
+     *
+     * @return Note
+     */
     public function setAccountId($accountId)
     {
         $this->entity["account_id"] = $accountId;
@@ -130,11 +185,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getGroupId()
     {
         return $this->entity["group_id"];
     }
 
+    /**
+     * @param $groupId
+     *
+     * @return Note
+     */
     public function setGroupId($groupId)
     {
         $this->entity["group_id"] = $groupId;
@@ -142,11 +205,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getIsEditable()
     {
         return $this->entity["is_editable"];
     }
 
+    /**
+     * @param $isEditable
+     *
+     * @return Note
+     */
     public function setIsEditable($isEditable)
     {
         $this->entity["is_editable"] = $isEditable;
@@ -154,11 +225,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getElementId()
     {
         return $this->entity["element_id"];
     }
 
+    /**
+     * @param $elementId
+     *
+     * @return Note
+     */
     public function setElementId($elementId)
     {
         $this->entity["element_id"] = $elementId;
@@ -166,11 +245,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getElementType()
     {
         return $this->entity["element_type"];
     }
 
+    /**
+     * @param $elementType
+     *
+     * @return Note
+     */
     public function setElementType($elementType)
     {
         switch ($elementType) {
@@ -202,11 +289,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getAttachment()
     {
         return $this->entity["attachment"];
     }
 
+    /**
+     * @param $attachment
+     *
+     * @return Note
+     */
     public function setAttachment($attachment)
     {
         $this->entity["attachment"] = $attachment;
@@ -214,11 +309,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getNoteType()
     {
         return $this->entity["note_type"];
     }
 
+    /**
+     * @param string $noteType
+     *
+     * @return Note
+     */
     public function setNoteType(string $noteType)
     {
         switch ($noteType) {
@@ -293,11 +396,19 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getText()
     {
         return $this->entity["text"];
     }
 
+    /**
+     * @param $text
+     *
+     * @return Note
+     */
     public function setText($text)
     {
         $this->entity["text"] = $text;
@@ -305,6 +416,9 @@ class Note implements EntityInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getLinks()
     {
         return $this->entity["links"];

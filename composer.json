@@ -2,6 +2,7 @@
     "name": "karasunokami/amocrmapi",
     "require": {
         "php": "^7.0",
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
@@ -18,5 +19,6 @@
         "psr-4": {
             "Amocrmapi\\": "src"
         }
-    }
+    },
+    "description": "API sdk client form amocrm api"
 }

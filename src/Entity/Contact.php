@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\Entity;
@@ -7,13 +6,27 @@ namespace Amocrmapi\Entity;
 use Amocrmapi\Traits\DefaultEntityTrait;
 use Amocrmapi\Dependencies\EntityInterface;
 
+/**
+ * Class Contact
+ *
+ * @package Amocrmapi\Entity
+ */
 class Contact implements EntityInterface
 {
     use DefaultEntityTrait;
-	
+
+    /**
+     * Default name for contact
+     */
     const CONTACT_DEFAULT_NAME = "api contact";
+    /**
+     * Element type for note and task amoapi
+     */
     const ELEMENT_TYPE = 1;
 
+    /**
+     * Contact constructor.
+     */
     public function __construct()
     {
         $this->entity = [
@@ -59,10 +72,10 @@ class Contact implements EntityInterface
      * Parse lead entity from amocrm response
      * 
      * @param array @data
-     * 
-     * @return \Amocrmapi\Entity\Contact
+     *
+     * @return Contact
      */
-    public function parse(array $data) : \Amocrmapi\Entity\Contact
+    public function parse(array $data)
     {
         $data["tags"] = array_reverse(array_column($data["tags"], "name"));
         $this->entity = $data;
@@ -72,12 +85,14 @@ class Contact implements EntityInterface
 
     /**
      * Set first contact phone
-     * 
+     *
      * @param array $customFields - all custom fields of contacts
      * of contact (AccountApi::getAccountInfo()["custom_fields"]["contacts"])
      * @param string $phone
      * @param string $enum = "WORK" - id of enum or one of
      * ["WORK", "WORKDD", "MOB", "FAX", "HOME", "OTHER"]
+     *
+     * @return Contact
      */
     public function setPhone(array $customFields, string $phone, string $enum = "WORK")
     {
@@ -89,12 +104,14 @@ class Contact implements EntityInterface
 
     /**
      * Add phone to exist phone numbers
-     * 
+     *
      * @param array $customFields - all custom fields of contacts
      * of contact (AccountApi::getAccountInfo()["custom_fields"]["contacts"])
      * @param string $phone
      * @param string $enum = "WORK" - id of enum or one of
      * ["WORK", "WORKDD", "MOB", "FAX", "HOME", "OTHER"]
+     *
+     * @return Contact
      */
     public function addPhone(array $customFields, string $phone, string $enum = "WORK")
     {
@@ -137,12 +154,14 @@ class Contact implements EntityInterface
 
     /**
      * Set first email address
-     * 
+     *
      * @param array $customFields - all custom fields of contacts
      * of contact (AccountApi::getAccountInfo()["custom_fields"]["contacts"])
-     * @param string $phone
+     * @param string $email
      * @param string $enum - id of enum or one of
      * ["WORK", "PRIV", "OTHER"]
+     *
+     * @return Contact
      */
     public function setEmail(array $customFields, string $email, string $enum = "WORK")
     {
@@ -154,10 +173,13 @@ class Contact implements EntityInterface
 
     /**
      * Add email to exist email addresses
-     * 
+     *
      * @param array $customFields - all custom fields of contacts
      * of contact (AccountApi::getAccountInfo()["custom_fields"]["contacts"])
      * @param string $email
+     * @param string $enum
+     *
+     * @return Contact
      */
     public function addEmail(array $customFields, string $email, string $enum = "WORK")
     {
@@ -200,8 +222,10 @@ class Contact implements EntityInterface
 
     /**
      * Bind lead to contact
-     * 
+     *
      * @param int $id
+     *
+     * @return Contact
      */
     public function addLead(int $id)
     {
@@ -214,8 +238,8 @@ class Contact implements EntityInterface
      * Bind company to contact
      *
      * @param int $id
-     * 
-     * @return array
+     *
+     * @return Contact
      */
     public function setCompany(int $id)
     {
@@ -226,8 +250,10 @@ class Contact implements EntityInterface
 
     /**
      * Set entity updated_by
-     * 
-     * @param int
+     *
+     * @param int $updatedBy
+     *
+     * @return Contact
      */
     public function setUpdatedBy(int $updatedBy)
     {
@@ -284,32 +310,42 @@ class Contact implements EntityInterface
 
     /**
      * Get id of system phone custom field
-     * 
+     *
      * @param array $contactCustomFields
+     *
+     * @return mixed
      */
     private function findPhoneId($contactCustomFields)
     {
+        $phoneId = null;
         foreach ($contactCustomFields as $field) {
             if (
                 $field["is_system"]
                 && ($field["name"] == "Телефон" || $field["name"] == "Phone")
             ) {
-                return $field["id"];
+                $phoneId = $field["id"];
             }
         }
+
+        return $phoneId;
     }
 
     /**
      * Get id of system email custom field
-     * 
+     *
      * @param array $contactCustomFields
+     *
+     * @return mixed
      */
     private function findEmailId($contactCustomFields)
     {
+        $emailId = null;
         foreach ($contactCustomFields as $field) {
             if ($field["is_system"] && $field["name"] == "Email") {
-                return $field["id"];
+                $emailId = $field["id"];
             }
         }
+
+        return $emailId;
     }
 }

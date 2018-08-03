@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\Entity;
@@ -7,14 +6,28 @@ namespace Amocrmapi\Entity;
 use Amocrmapi\Traits\DefaultEntityTrait;
 use Amocrmapi\Dependencies\EntityInterface;
 
+/**
+ * Class Lead
+ *
+ * @package Amocrmapi\Entity
+ */
 class Lead implements EntityInterface
 {
 	use DefaultEntityTrait;
 
+    /**
+     * Default name for creating leads
+     */
     const LEAD_DEFAULT_NAME = "api lead";
+    /**
+     * Element type for note and task amoapi
+     */
     const ELEMENT_TYPE = 2;
 
-	public function __construct()
+    /**
+     * Lead constructor.
+     */
+    public function __construct()
 	{
 		$this->entity = [
 			"id" => null,
@@ -65,9 +78,9 @@ class Lead implements EntityInterface
      * 
      * @param array @data
      * 
-     * @return \Amocrmapi\Entity\Lead
+     * @return Lead
      */
-    public function parse(array $data) : \Amocrmapi\Entity\Lead
+    public function parse(array $data)
     {
     	$data["tags"] = array_reverse(array_column($data["tags"], "name"));
     	$this->entity = $data;
@@ -80,9 +93,9 @@ class Lead implements EntityInterface
      * 
      * @param int $id
      * 
-     * @return \Amocrmapi\Entity\Lead
+     * @return Lead
      */
-    public function addContact(int $id) : \Amocrmapi\Entity\Lead
+    public function addContact(int $id)
     {
     	$this->entity["contacts"]["id"][] = $id;
 
@@ -128,9 +141,9 @@ class Lead implements EntityInterface
      *
      * @param int $id
      * 
-     * @return \Amocrmapi\Entity\Lead
+     * @return Lead
      */
-	public function setCompany(int $id) : \Amocrmapi\Entity\Lead
+	public function setCompany(int $id)
 	{
 		$this->entity["company"]["id"] = $id;
 
@@ -164,7 +177,7 @@ class Lead implements EntityInterface
      * 
      * @return array
      */
-	public function getStatusid()
+	public function getStatusId()
 	{
 		return $this->entity["status_id"];
 	}
@@ -174,9 +187,9 @@ class Lead implements EntityInterface
      * 
      * @param int
      * 
-     * @return \Amocrmapi\Entity\Lead
+     * @return Lead
      */
-	public function setStatusId(int $statusId) : \Amocrmapi\Entity\Lead
+	public function setStatusId(int $statusId)
 	{
 		$this->entity["status_id"] = $statusId;
 
@@ -198,9 +211,9 @@ class Lead implements EntityInterface
      * 
      * @param int
      * 
-     * @return \Amocrmapi\Entity\Lead
+     * @return Lead
      */
-	public function setSale(int $sale) : \Amocrmapi\Entity\Lead
+	public function setSale(int $sale)
 	{
 		$this->entity["sale"] = $sale;
 
@@ -224,9 +237,9 @@ class Lead implements EntityInterface
      * 
      * @param $id
      * 
-     * @return \Amocrmapi\Entity\Lead
+     * @return Lead
      */
-	public function setPipeline($id) : \Amocrmapi\Entity\Lead
+	public function setPipeline($id)
 	{
 		$this->entity["pipeline"] = $id;
 

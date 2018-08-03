@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\V2\Traits;
@@ -9,9 +8,17 @@ namespace Amocrmapi\V2\Traits;
  */
 trait SingletonTrait
 {
-	private static $instance = null;
+    /**
+     * @var null
+     */
+    private static $instance = null;
 
-	public static function getInstance()
+    /**
+     * Default singleton method
+     *
+     * @return SingletonTrait
+     */
+    public static function getInstance()
 	{
 		if (is_null(self::$instance)) {
 			self::$instance = new self();
@@ -20,8 +27,23 @@ trait SingletonTrait
 		return self::$instance;
 	}
 
-	public function __clone() {}
-	public function __sleep() {}
-	public function __wakeup() {}
-	public function __construct() {}
+    /**
+     * Block creating objects instead of getInstance method
+     */
+    public function __clone() {}
+
+    /**
+     * Block creating objects instead of getInstance method
+     */
+    public function __sleep() {}
+
+    /**
+     * Block creating objects instead of getInstance method
+     */
+    public function __wakeup() {}
+
+    /**
+     * Block creating objects instead of getInstance method
+     */
+    public function __construct() {}
 }

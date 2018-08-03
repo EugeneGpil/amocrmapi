@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\V2;
@@ -8,7 +7,6 @@ use Amocrmapi\Dependencies\EntityApiInterface;
 use Amocrmapi\Dependencies\EntityInterface;
 use Amocrmapi\Exceptions\AuthException;
 use Amocrmapi\V2\Helpers\Client;
-use Amocrmapi\Entity\Lead;
 
 /**
  * Main api class
@@ -36,7 +34,12 @@ class API
 	 */
 	private $hash;
 
-	/**
+    /**
+     * @var \GuzzleHttp\Client
+     */
+    private $client;
+
+    /**
 	 * @param $subdomain string
 	 * @param $login string
 	 * @param $hash string
@@ -48,11 +51,14 @@ class API
 		$this->hash = $hash;
 	}
 
-	/**
-	 * Try connect to amocrm
-	 * 
-	 * @return \Amocrmapi\V2\API
-	 */
+    /**
+     * Try connect to amocrm
+     *
+     * @throws AuthException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return API
+     */
 	public function connect()
 	{
 		$this->client = new Client;
@@ -71,16 +77,18 @@ class API
     	return $this;
 	}
 
-	/**
-	 * Send request to amocrm
-	 *
-	 * @param string $uri 
-	 * @param array|string $params 
-	 * @param $string method 
-	 * @param bool $hash - add hash to link
-	 * 
-	 * @return array
-	 */
+    /**
+     * Send request to amocrm
+     *
+     * @param string $uri
+     * @param array|string $params
+     * @param string $method
+     * @param bool $hash - add hash to link
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
+     */
 	public function request(
 		string $uri,
 		$params,

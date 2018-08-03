@@ -1,15 +1,40 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\Dependencies;
 
-use Amocrmapi\Dependencies\EntityApiInterface;
-
+/**
+ * Interface DefaultEntityApiInterface
+ *
+ * @package Amocrmapi\Dependencies
+ */
 interface DefaultEntityApiInterface extends EntityApiInterface
 {
-	public function add(array $entities) : array;
-	public function get(array $params) : array;
-	public function update(array $entities) : array;
-	public function remove(array $entities) : array;
+    /**
+     * @param array $entities
+     *
+     * @return array
+     */
+    public function add(array $entities) : array;
+
+    /**
+     * @param array $params
+     *
+     * @return array
+     */
+    public function get(array $params) : array;
+
+    /**
+     * @param array $entities
+     *
+     * @return array
+     */
+    public function update(array $entities) : array;
+
+    /**
+     * @param array $entities
+     *
+     * @return array
+     */
+    public function remove(array $entities) : array;
 }

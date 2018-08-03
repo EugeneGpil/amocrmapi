@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\Entity;
@@ -7,13 +6,27 @@ namespace Amocrmapi\Entity;
 use Amocrmapi\Traits\DefaultEntityTrait;
 use Amocrmapi\Dependencies\EntityInterface;
 
+/**
+ * Class Company
+ *
+ * @package Amocrmapi\Entity
+ */
 class Company implements EntityInterface
 {
     use DefaultEntityTrait;
 
+    /**
+     *
+     */
     const COMPANY_DEFAULT_NAME = "api company";
+    /**
+     *
+     */
     const ELEMENT_TYPE = 3;
 
+    /**
+     * Company constructor.
+     */
     public function __construct()
     {
         $this->entity = [
@@ -59,10 +72,10 @@ class Company implements EntityInterface
      * Parse lead entity from amocrm response
      * 
      * @param array @data
-     * 
+     *
      * @return \Amocrmapi\Entity\Company
      */
-    public function parse(array $data) : \Amocrmapi\Entity\Company
+    public function parse(array $data)
     {
         $data["tags"] = array_reverse(array_column($data["tags"], "name"));
         $this->entity = $data;
@@ -72,8 +85,10 @@ class Company implements EntityInterface
 
     /**
      * Bind lead to company
-     * 
+     *
      * @param int $id
+     *
+     * @return Company
      */
     public function addLead(int $id)
     {
@@ -84,6 +99,10 @@ class Company implements EntityInterface
 
     /**
      * Bind contact to company
+     *
+     * @param int $id
+     *
+     * @return Company
      */
     public function addContact(int $id)
     {
@@ -94,8 +113,10 @@ class Company implements EntityInterface
 
     /**
      * Set entity updated_by
-     * 
+     *
      * @param int
+     *
+     * @return Company
      */
     public function setUpdatedBy(int $updatedBy)
     {

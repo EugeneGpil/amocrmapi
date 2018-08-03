@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\V2\Helpers;
@@ -17,14 +16,14 @@ class Client
 	/**
 	 * Http guzzle client
 	 *
-	 * @var GuzzleHttp\Client
+	 * @var GuzzleClient
 	 */
 	private $client;
 
 	/**
 	 * AmoCrm cookies
 	 *
-	 * @var GuzzleHttp\Cookie\CookieJar
+	 * @var CookieJar
 	 */
 	private $cookies;
 
@@ -37,17 +36,18 @@ class Client
 		$this->client = new GuzzleClient(["cookies" => $this->cookies]);
 	}
 
-	/**
-	 * Send request
-	 *
-	 * @param string $uri 
-	 * @param array|string $params 
-	 * @param method $string 
-	 * 
-	 * @throws Amocrmapi\Exceptions\EmptyResponseException
-	 *
-	 * @return array
-	 */
+    /**
+     * Send request
+     *
+     * @param string $uri
+     * @param array|string $params
+     * @param string $method
+     *
+     * @throws EmptyResponseException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
+     */
 	public function request(string $uri, $params, string $method) : array
 	{
 		$body = [

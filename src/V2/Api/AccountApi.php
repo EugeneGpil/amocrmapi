@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\V2\Api;
@@ -9,17 +8,25 @@ use Amocrmapi\V2\Traits\SingletonTrait;
 use Amocrmapi\Exceptions\RequestException;
 use Amocrmapi\Dependencies\EntityApiInterface;
 
+/**
+ * Class AccountApi
+ *
+ * @package Amocrmapi\V2\Api
+ */
 class AccountApi implements EntityApiInterface
 {
 	use SingletonTrait, InitApiTrait;
 
-	const LINK = "/api/v2/account";
+    /**
+     * Api link adds to .amocrm.ru
+     */
+    const LINK = "/api/v2/account";
 
-	/**
+    /**
      * Get all info about account
-     * 
-     * @throws Amocrmapi\Exceptions\RequestException
-     * 
+     *
+     * @throws RequestException
+     *
      * @return array
      */
 	public function getAccountInfo() : array

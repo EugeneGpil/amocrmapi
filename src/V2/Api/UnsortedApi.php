@@ -1,23 +1,36 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Amocrmapi\V2\Api;
 
-use Amocrmapi\Entity\Unsorted;
+use Amocrmapi\Entity\Task;
 use Amocrmapi\V2\Traits\InitApiTrait;
 use Amocrmapi\V2\Traits\SingletonTrait;
+use Amocrmapi\Exceptions\RequestException;
 use Amocrmapi\V2\Traits\DefaultApiMethodsTrait;
 use Amocrmapi\Dependencies\DefaultEntityApiInterface;
 
+/**
+ * Class UnsortedApi
+ *
+ * @package Amocrmapi\V2\Api
+ */
 class UnsortedApi implements DefaultEntityApiInterface
 {
 	use SingletonTrait, InitApiTrait, DefaultApiMethodsTrait;
 
-	const FORM_LINK = "/api/v2/incoming_leads/form";
+    /**
+     * Api link adds to .amocrm.ru for form unsorted
+     */
+    const FORM_LINK = "/api/v2/incoming_leads/form";
+    /**
+     *Api link adds to .amocrm.ru for sip unsorted
+     */
     const SIP_LINK = "/api/v2/incoming_leads/sip";
-    const LINK = "/api/v2/incoming_leads";
-	const ENTITY_CLASS = Task::class;
+    /**
+     * Class name to entities methods
+     */
+    const ENTITY_CLASS = Task::class;
 
     /**
      * Add unsorted to amocrm
@@ -25,12 +38,13 @@ class UnsortedApi implements DefaultEntityApiInterface
      * @param array $entities
      * @param bool $sip = false
      * 
-     * @throws Amocrmapi\Exceptions\RequestException
+     * @throws RequestException
      * 
      * @return array
      */
     public function add(array $entities, $sip = false) : array
     {
+        $data = [];
     	foreach ($entities as $entity) {
             $data["add"][] = $entity->prepare();
         }
