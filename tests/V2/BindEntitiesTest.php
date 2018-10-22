@@ -15,6 +15,7 @@ class BindEntitiesTest extends TestCase
         $contact =  $api->create("contact");
         $company =  $api->create("company");
         
+        
         sleep(1);
         $companyId = $api->get("companyapi")->add([$company])[0]["id"];
 
@@ -27,6 +28,7 @@ class BindEntitiesTest extends TestCase
 
         sleep(1);
         $contactId = $api->get("contactapi")->add([$contact])[0]["id"];
+
 
         sleep(1);
         $lead = $api->get("leadapi")->get(["id"=> $leadId])[0];
