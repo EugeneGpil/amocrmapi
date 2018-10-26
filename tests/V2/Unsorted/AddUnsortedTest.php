@@ -20,14 +20,14 @@ class AddUnsortedTest extends TestCase
 
         $lead
             ->setName("Заявка с сайта")
-            ->addTag("test")
+            ->addTag("test, some")
             ->setCustomField(1974337, "asdfasdf")
             ->setCustomField(1971687, "Отрада")
             ->setSale(1971)
         ;
         $contact
             ->setName("Имя контакта")
-            ->addTag("test")
+            ->addTag("test, some")
             ->addPhone($cf, "+7111")
             ->addPhone($cf, "+7222", "HOME")
             ->addEmail($cf, "some@some.some", "PRIV")
@@ -36,7 +36,7 @@ class AddUnsortedTest extends TestCase
         ;
         $company
             ->setName("Имя компании")
-            ->addTag("test")
+            ->addTag("test, some")
             ->setCustomField(1964587, "родитель 1")
             ->setCustomField(1964585, "родитель 2")
             ->setCustomField(1973475, "first")
@@ -48,6 +48,8 @@ class AddUnsortedTest extends TestCase
             ->setCompany($company)
             ->addNote("some text")
         ;
+
+        $unsorted->setFormPage("https://site.com");
 
         $resp = $api->get("unsortedapi")->add([$unsorted]);
         $this->assertEquals("success", $resp["status"]);
