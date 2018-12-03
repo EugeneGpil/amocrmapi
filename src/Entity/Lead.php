@@ -67,8 +67,13 @@ class Lead implements EntityInterface
     {
     	$this->entity["tags"] = join(",", array_column($this->entity["tags"], "name"));
         
-        $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
-        $this->entity["company_id"] = $this->entity["company"]["id"];
+        if (isset($this->entity["contacts"]["id"])) {
+            $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
+        }
+
+        if (isset($this->entity["company"]["id"])) {
+            $this->entity["company_id"] = $this->entity["company"]["id"];
+        }
 
         return $this->entity;
     }
