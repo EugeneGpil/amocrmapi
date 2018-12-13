@@ -62,8 +62,10 @@ class Contact implements EntityInterface
     {
         $this->entity["tags"] = join(",", array_column($this->entity["tags"], "name"));
         
-        $this->entity["leads_id"] = $this->entity["leads"]["id"];
-       
+        if (isset($this->entity["leads"]["id"])) {
+            $this->entity["leads_id"] = $this->entity["leads"]["id"];
+        }
+        
         if ($this->entity["company"]) {
             $this->entity["company_id"] = $this->entity["company"]["id"];
         }

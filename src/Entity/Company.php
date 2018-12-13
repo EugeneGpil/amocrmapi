@@ -62,8 +62,13 @@ class Company implements EntityInterface
     {
         $this->entity["tags"] = join(",", array_column($this->entity["tags"], "name"));
         
-        $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
-        $this->entity["leads_id"] = $this->entity["leads"]["id"];
+        if (isset($this->entity["contacts"]["id"])) {
+            $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
+        }
+
+        if (isset($this->entity["leads"]["id"])) {
+            $this->entity["leads_id"] = $this->entity["leads"]["id"];
+        }
 
         return $this->entity;
     }
