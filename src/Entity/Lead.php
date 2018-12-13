@@ -31,7 +31,7 @@ class Lead implements EntityInterface
 	{
 		$this->entity = [
 			"id" => null,
-            "sale" => null,
+            "price" => null,
             "group_id" => null,
             "status_id" => null,
             "closed_at" => null,
@@ -202,25 +202,25 @@ class Lead implements EntityInterface
 	}
 
 	/**
-     * Return entity sale
+     * Return entity price
      * 
      * @return int
      */
-	public function getSale()
+	public function getPrice()
 	{
-		return $this->entity["sale"];
+		return $this->entity["price"];
 	}
 
 	/**
-     * Set entity sale
+     * Set entity price
      * 
      * @param int
      * 
      * @return Lead
      */
-	public function setSale(int $sale)
+	public function setPrice(int $price)
 	{
-		$this->entity["sale"] = $sale;
+		$this->entity["price"] = $price;
 
 		return $this;
 	}
