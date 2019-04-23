@@ -33,7 +33,7 @@ trait DefaultApiMethodsTrait
         }
 
         if (isset($data["_embedded"]["errors"])) {
-            throw new RequestException($data["_embedded"]["errors"][0][0], 400);
+            throw new RequestException(json_encode($data["_embedded"]["errors"]), 400);
         }
 
         if (!isset($data["_embedded"]["items"])) {
