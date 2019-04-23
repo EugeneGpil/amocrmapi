@@ -82,7 +82,7 @@ trait DefaultEntityTrait
      */
     public function addTag(string $tag)
     {
-        $this->entity["tags"][] = ["name" => $tag];
+        $this->entity["tags"] .= ",{$tag}";
 
         return $this;
     }
@@ -94,15 +94,15 @@ trait DefaultEntityTrait
      *
      * @return DefaultEntityTrait
      */
-    public function removeTag($tag)
+    public function removeTag(string $tag)
     {
-        $index = array_search($tag, array_column($this->entity["tags"], "name"));
+        $tags = explode(',', $this->entity["tags"]);
 
-        if ($index === false) {
-            return $this;
+        if (($key = array_search($tag, $tags)) !== false) {
+            unset($tags[$key]);
         }
 
-        unset($this->entity["tags"][$index]);
+        $this->entity["tags"] = $tags;
 
         return $this;
     }
@@ -336,13 +336,11 @@ trait DefaultEntityTrait
     /**
      * Set entity tags
      * 
-     * ["name" => sting, "id" => int]
-     * 
-     * @param array $tags
+     * @param string $tags
      *
      * @return DefaultEntityTrait
      */
-    public function setTags(array $tags)
+    public function setTags(string $tags)
     {
         $this->entity["tags"] = $tags;
 
@@ -352,11 +350,10 @@ trait DefaultEntityTrait
     /**
      * Return entity tags
      * 
-     * ["name" => sting, "id" => int]
      * 
-     * @return array
+     * @return string 
      */
-    public function getTags() : array
+    public function getTags() : string
     {
         return $this->entity["tags"];
     }
