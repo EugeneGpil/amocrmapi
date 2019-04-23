@@ -32,7 +32,7 @@ trait DefaultApiMethodsTrait
             throw new RequestException($data["detail"], (int) $data["status"]);
         }
 
-        if (isset($data["_embedded"]["errors"])) {
+        if (isset($data["_embedded"]["errors"]) && !empty($data["_embedded"]["errors"])) {
             throw new RequestException(json_encode($data["_embedded"]["errors"]), 400);
         }
 
