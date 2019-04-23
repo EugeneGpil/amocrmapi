@@ -37,7 +37,7 @@ class Customer implements EntityInterface
             "responsible_user_id" => null,
             "name" => self::CUSTOMER_DEFAULT_NAME,
             
-            "next_date" => null,
+            "next_date" => 0,
             "next_price" => null,
             "periodicity" => null,
             "period_id" => null,
