@@ -65,9 +65,8 @@ trait DefaultApiMethodsTrait
             throw new RequestException($data["response"]["error"], (int) $data["response"]["code"]);
         }
 
-        if (isset($data['_embedded']['errors'])) {
-            $error = $data['_embedded']['errors']["update"][0];
-            throw new RequestException($error["message"], (int) $error["code"]);
+        if (isset($data["_embedded"]["errors"]) && !empty($data["_embedded"]["errors"])) {
+            throw new RequestException(json_encode($data["_embedded"]["errors"]), 400);
         }
 
         return $data["_embedded"]["items"];
@@ -98,6 +97,10 @@ trait DefaultApiMethodsTrait
 
             if (!isset($data['_embedded']['items'])) {
                 throw new RequestException($data["response"]["error"], (int) $data["response"]["code"]);
+            }
+
+            if (isset($data["_embedded"]["errors"]) && !empty($data["_embedded"]["errors"])) {
+                throw new RequestException(json_encode($data["_embedded"]["errors"]), 400);
             }
 
             foreach ($data['_embedded']['items'] as $item) {
