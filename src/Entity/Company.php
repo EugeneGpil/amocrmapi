@@ -80,7 +80,7 @@ class Company implements EntityInterface
      */
     public function parse(array $data)
     {
-        $data["tags"] = array_reverse(array_column($data["tags"], "name"));
+        $data["tags"] = join(',', array_reverse(array_column($data["tags"], "name")));
         $this->entity = $data;
         
         return $this;
