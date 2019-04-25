@@ -102,7 +102,7 @@ trait DefaultEntityTrait
             unset($tags[$key]);
         }
 
-        $this->entity["tags"] = $tags;
+        $this->entity["tags"] = join(',', $tags);
 
         return $this;
     }
@@ -349,7 +349,6 @@ trait DefaultEntityTrait
 
     /**
      * Return entity tags
-     * 
      * 
      * @return string 
      */

@@ -41,7 +41,7 @@ class Company implements EntityInterface
             "responsible_user_id" => null,
             "name" => self::COMPANY_DEFAULT_NAME,
             
-            "tags" => [],
+            "tags" => "",
             "tasks" => [],
             "notes" => [],
             "custom_fields" => [],
@@ -60,8 +60,6 @@ class Company implements EntityInterface
      */
     public function prepare() : array
     {
-        $this->entity["tags"] = join(",", array_column($this->entity["tags"], "name"));
-        
         if (isset($this->entity["contacts"]["id"])) {
             $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
         }

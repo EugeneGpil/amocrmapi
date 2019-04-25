@@ -47,7 +47,7 @@ class Lead implements EntityInterface
             "responsible_user_id" => null,
             "name" => self::LEAD_DEFAULT_NAME,
 
-            "tags" => [],
+            "tags" => "",
             "notes" => [],
             "tasks" => [],
             "custom_fields" => [],
@@ -65,8 +65,6 @@ class Lead implements EntityInterface
      */
     public function prepare() : array
     {
-    	$this->entity["tags"] = join(",", array_column($this->entity["tags"], "name"));
-        
         if (isset($this->entity["contacts"]["id"])) {
             $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
         }

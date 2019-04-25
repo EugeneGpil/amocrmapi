@@ -41,7 +41,7 @@ class Contact implements EntityInterface
             "responsible_user_id" => null,
             "name" => self::CONTACT_DEFAULT_NAME,
 
-            "tags" => [],
+            "tags" => "",
             "notes" => [],
             "tasks" => [],
             "custom_fields" => [],
@@ -60,8 +60,6 @@ class Contact implements EntityInterface
      */
     public function prepare() : array
     {
-        $this->entity["tags"] = join(",", array_column($this->entity["tags"], "name"));
-        
         if (isset($this->entity["leads"]["id"])) {
             $this->entity["leads_id"] = $this->entity["leads"]["id"];
         }
