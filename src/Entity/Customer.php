@@ -37,12 +37,14 @@ class Customer implements EntityInterface
             "responsible_user_id" => null,
             "name" => self::CUSTOMER_DEFAULT_NAME,
             
+            "status_id" => null,
             "next_date" => 0,
             "next_price" => null,
             "periodicity" => null,
             "period_id" => null,
 
             "contacts_id" => null,
+            "contacts" => [],
             "company_id" => null,
 
             "tags" => "",
@@ -208,5 +210,44 @@ class Customer implements EntityInterface
         $this->entity["unlink"] = $unlink;
 
         return $this;
+    }
+
+    /**
+     * @param array (int) $contacts
+     * 
+     * @return Customer
+     */
+    public function setContacts(array $contacts)
+    {
+        $this->entity["contacts"] = $contacts;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getContacts() : array
+    {
+        return $this->entity["contacts"];
+    }
+    /**
+     * @param int $statusId
+     * 
+     * @return Customer
+     */
+    public function setStatusId(int $statusId)
+    {
+        $this->entity["status_id"] = $statusId;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusId() : int
+    {
+        return $this->entity["status_id"];
     }
 }
