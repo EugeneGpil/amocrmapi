@@ -86,6 +86,8 @@ class API
      * @param bool $hash - add hash to link
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws TooManyRequestsException
+     * @throws AccountBlocked
      *
      * @return array
      */

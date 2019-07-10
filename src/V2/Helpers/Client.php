@@ -5,7 +5,8 @@ namespace Amocrmapi\V2\Helpers;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
-use Amocrmapi\Exceptions\EmptyResponseException;
+use Amocrmapi\Exceptions\TooManyRequestsException;
+use Amocrmapi\Exceptions\AccountBlockedException;
 
 /**
  * Helper for work with Guzzle
@@ -40,7 +41,7 @@ class Client
      * Send request
      *
      * @param string $uri
-     * @param array|string $params
+     * @param mixed $params
      * @param string $method
      *
      * @throws EmptyResponseException
@@ -61,11 +62,21 @@ class Client
 		$method === "GET" ? $uri .= $params : $body["form_params"] = $params;
 
 		try {
-			$result = $this->client->request($method, $uri, $body);
-			$result = json_decode($result->getBody()->getContents(), true);
+			$response = $this->client->request($method, $uri, $body);
+			$result = json_decode($response->getBody()->getContents(), true);
 		} catch (\GuzzleHttp\Exception\ClientException $exception) {
         	$result = json_decode($exception->getResponse()->getBody()->getContents(), true);
-        }
+		}
+		
+		switch ($response->getStatusCode()) {
+			case 429:
+				throw new TooManyRequestsException;
+				break;
+
+			case 403:
+				throw new AccountBlockedException;
+				break;
+		}
 
         if (is_null($result)) throw new EmptyResponseException;
 
