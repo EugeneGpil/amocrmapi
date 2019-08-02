@@ -7,6 +7,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Cookie\CookieJar;
 use Amocrmapi\Exceptions\TooManyRequestsException;
 use Amocrmapi\Exceptions\AccountBlockedException;
+use Amocrmapi\Exceptions\EmptyResponseException;
 
 /**
  * Helper for work with Guzzle
