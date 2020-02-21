@@ -247,5 +247,31 @@ class Lead implements EntityInterface
 		$this->entity["pipeline"] = $id;
 
         return $this;
-	}
+     }
+     
+     /**
+     * Return entity loss_reason_id
+     * 
+     * ["id" => int]
+     * 
+     * @return array
+     */
+     public function getLossReasonId()
+     {
+          return $this->entity["loss_reason_id"];
+     }
+
+     /**
+      * Set entity loss_reason_id
+      * 
+      * @param $id
+      * 
+      * @return Lead
+      */
+     public function setLossReasonId($id)
+     {
+          $this->entity["loss_reason_id"] = $id;
+
+          return $this;
+     }
 }
