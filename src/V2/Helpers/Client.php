@@ -29,13 +29,22 @@ class Client
 	 */
 	private $cookies;
 
+	private $headers = [
+		"User-Agent" => "Freshcube-Client/1.0",
+		"Accept"     => "application/json",
+	];
+
 	/**
      * HTTPClient constructor.
      */
-	public function __construct()
+	public function __construct($params = [])
 	{
 		$this->cookies = new CookieJar;
 		$this->client = new GuzzleClient(["cookies" => $this->cookies]);
+		
+		if (isset($params["headers"])) {
+			$this->headers = array_merge($this->headers, $params["headers"]);
+		}
 	}
 
     /**
@@ -53,10 +62,7 @@ class Client
 	public function request(string $uri, $params, string $method) : array
 	{
 		$body = [
-			"headers" => [
-				"User-Agent" => "Freshcube-Client/1.0",
-				"Accept"     => "application/json",
-			],
+			"headers" => $this->headers,
 			"verify" => false,
 			"cookies" => $this->cookies,
 		];
@@ -69,14 +75,16 @@ class Client
         	$result = json_decode($exception->getResponse()->getBody()->getContents(), true);
 		}
 		
-		switch ($response->getStatusCode()) {
-			case 429:
-				throw new TooManyRequestsException;
-				break;
+		if (isset($response)) {
+			switch ($response->getStatusCode()) {
+				case 429:
+					throw new TooManyRequestsException;
+					break;
 
-			case 403:
-				throw new AccountBlockedException;
-				break;
+				case 403:
+					throw new AccountBlockedException;
+					break;
+			}
 		}
 
         if (is_null($result)) throw new EmptyResponseException;
