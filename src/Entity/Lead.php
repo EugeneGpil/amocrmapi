@@ -58,23 +58,40 @@ class Lead implements EntityInterface
 		];
 	}
 
-    /**
+     /**
      * Prepare entity to sync with amocrm
      * 
      * @return array
      */
-    public function prepare() : array
-    {
-        if (isset($this->entity["contacts"]["id"])) {
-            $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
-        }
+     public function prepare() : array
+     {
+          if (isset($this->entity["contacts"]["id"])) {
+               $this->entity["contacts_id"] = $this->entity["contacts"]["id"];
+          }
 
-        if (isset($this->entity["company"]["id"])) {
-            $this->entity["company_id"] = $this->entity["company"]["id"];
-        }
+          if (isset($this->entity["company"]["id"])) {
+               $this->entity["company_id"] = $this->entity["company"]["id"];
+          }
 
-        return $this->entity;
-    }
+          if (!isset($this->entity["custom_fields"])) {
+               return $this->entity;
+          }
+
+          foreach ($this->entity["custom_fields"] as &$customField) {
+
+               if (
+                    !isset($customField["values"][0]["enum"])
+                    || !isset($customField["values"][0]["value"])
+               ) {
+                    continue;
+               }
+
+               $customField["values"][0]["value"] = 
+                    $customField["values"][0]["enum"];
+          }
+
+          return $this->entity;
+     }
 
     /**
      * Parse lead entity from amocrm response
