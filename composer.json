@@ -1,5 +1,5 @@
 {
-    "name": "eugenegpil/amocrmapi",
+    "name": "eugenegpil/amocrmapipublic",
     "require": {
         "php": "^7.0",
         "ext-json": "*",
